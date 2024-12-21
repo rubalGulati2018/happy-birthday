@@ -9,34 +9,55 @@
             box-sizing: border-box;
         }
 
+        /* Enhanced Background with better contrast */
         body {
             min-height: 100vh;
-            background: linear-gradient(135deg, #1a0f3c 0%, #4b1f6e 100%);
+            background: linear-gradient(45deg, #FFB6C1, #FF69B4, #DA70D6, #FF1493, #ebeb7a,#05cdff);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
             color: white;
             font-family: 'Arial', sans-serif;
-            overflow: hidden;
+            overflow-x: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             position: relative;
+            padding: 20px;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .content {
             text-align: center;
             z-index: 1;
+            position: relative;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            margin: 20px auto;
+            width: 90%;
+            max-width: 800px;
         }
 
         h1 {
             font-size: 3em;
             margin-bottom: 2rem;
-            text-shadow: 0 0 10px rgba(255,255,255,0.3);
-            animation: bounce 1s infinite alternate;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: rainbow-text 3s linear infinite;
         }
 
-        @keyframes bounce {
-            from { transform: translateY(0); }
-            to { transform: translateY(-10px); }
+        @keyframes rainbow-text {
+            0% { text-shadow: 0 0 10px #ff0000; }
+            25% { text-shadow: 0 0 10px #00ff00; }
+            50% { text-shadow: 0 0 10px #0000ff; }
+            75% { text-shadow: 0 0 10px #ff00ff; }
+            100% { text-shadow: 0 0 10px #ff0000; }
         }
 
         .scene {
@@ -50,7 +71,116 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
         }
 
-        /* Animated Cake Styles */
+        /* Star Animation */
+        .star {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            animation: twinkle 1.5s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            from { transform: scale(1); opacity: 1; }
+            to { transform: scale(1.5); opacity: 0.3; }
+        }
+
+        /* Confetti Animation */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            pointer-events: none;
+            z-index: 0;
+            animation: confetti-fall 5s linear infinite;
+        }
+
+        @keyframes confetti-fall {
+            0% { 
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% { 
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Sparkle Effect */
+        .sparkle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: rgb(249, 245, 245);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            animation: sparkle 1s linear infinite;
+        }
+
+        @keyframes sparkle {
+            0% { transform: scale(0) rotate(0deg); opacity: 0; }
+            50% { transform: scale(1) rotate(180deg); opacity: 1; }
+            100% { transform: scale(0) rotate(360deg); opacity: 0; }
+        }
+
+        /* Button Container */
+         #button-container {
+            position: relative;
+            bottom: 30px;
+            left: 0;
+            right: 0;
+            top: 30px;
+            display: flex;
+            justify-content: center;
+            height: 60px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            font-size: 18px;
+            background: linear-gradient(45deg, #ff4081, #e91e63);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            position: absolute;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(233, 30, 99, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(233, 30, 99, 0.6);
+        }
+
+        .btn.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #wish {
+            font-size: 24px;
+            max-width: 600px;
+            margin: 2rem auto;
+            opacity: 0;
+            transition: opacity 1s ease;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Keep your original cake, balloon, and gift styles unchanged */
+
+
+          /* Animated Cake Styles */
         .cake {
             position: relative;
             width: 180px;
@@ -208,77 +338,10 @@
             to { transform: translateY(-20px); }
         }
 
-        /* Rest of the styles remain the same */
-        .light {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: white;
-            opacity: 0;
-            transition: opacity 1s;
-            animation: twinkle 1.5s infinite alternate;
-        }
-
-        @keyframes twinkle {
-            0% { opacity: 0.2; transform: scale(0.8); }
-            100% { opacity: 1; transform: scale(1.2); }
-        }
-
-        #button-container {
-            position: fixed;
-            bottom: 50px;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: center;
-            height: 60px;
-        }
-
-        .btn {
-            padding: 15px 30px;
-            font-size: 18px;
-            background: linear-gradient(45deg, #ff4081, #e91e63);
-            color: white;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            position: absolute;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(233, 30, 99, 0.4);
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(233, 30, 99, 0.6);
-        }
-
-        .btn.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        #wish {
-            font-size: 18px;
-            max-width: 600px;
-            margin: 2rem auto;
-            opacity: 0;
-            transition: opacity 1s ease;
-            padding: 0 20px;
-            color: #ffffff;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-            animation: wishFloat 2s infinite alternate;
-        }
-
-        @keyframes wishFloat {
-            from { transform: translateY(0); }
-            to { transform: translateY(-10px); }
-        }
     </style>
 </head>
 <body>
+    <!-- Keep your original HTML structure unchanged -->
     <div class="content">
         <h1>Happy Birthday Subbu! 🎉</h1>
         <div class="scene">
@@ -293,7 +356,7 @@
             </div>
         </div>
         <div id="button-container">
-            <button id="btn1" class="btn visible">✨ Turn on the Lights</button>
+            <button id="btn1" class="btn visible">✨ Let's Celebrate</button>
             <button id="btn2" class="btn">🎵 Play the Music</button>
             <button id="btn3" class="btn">🎈 Fly with Balloons</button>
             <button id="btn4" class="btn">🕯️ Light the Candle</button>
@@ -301,13 +364,64 @@
         </div>
         <p id="wish">
             Happy Birthday to my amazing best friend! Your friendship is a treasure and I cherish every moment of laughter and
-            support we’ve shared. You’re more than just a friend, you’re my family. May your birthday be as
-			fantastic and special as you are, filled with joy, love	and endless happy moments. Here’s to creating more unforgettable
-            memories and looking forward to a wonderful year ahead! A Very Happy Birthday Subbu!  🌟✨🎂
+            support we've shared. You're more than just a friend, you're my family. May your birthday be as
+            fantastic and special as you are, filled with joy, love and endless happy moments. Here's to creating more unforgettable
+            memories and looking forward to a wonderful year ahead! A Very Happy Birthday Subbu! 🌟✨🎂
         </p>
     </div>
 
     <script>
+        // Keep your original JavaScript and add these new animation functions
+        function createStar() {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + 'vw';
+            star.style.top = Math.random() * 100 + 'vh';
+            document.body.appendChild(star);
+            setTimeout(() => star.remove(), 1500);
+        }
+
+        function createLight() {
+            const light = document.createElement('div');
+            light.className = 'light';
+            light.style.left = Math.random() * 100 + 'vw';
+            light.style.top = Math.random() * 100 + 'vh';
+            document.body.appendChild(light);
+            return light;
+        }
+
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            document.body.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 5000);
+        }
+
+        function createSparkle(x, y) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = x + 'px';
+            sparkle.style.top = y + 'px';
+            document.body.appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 1000);
+        }
+
+        // Add these to your existing button click handlers
+        document.getElementById('btn1').addEventListener('click', () => {
+            setInterval(createStar, 200);
+            setInterval(createConfetti, 300);
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if(Math.random() > 0.9) {
+                createSparkle(e.clientX, e.clientY);
+            }
+        });
+
+        // Keep the rest of your original JavaScript unchanged
+
         const audio = new Audio('hbd.mp3');
         
         function createLight() {
@@ -319,6 +433,7 @@
             return light;
         }
 
+        // Updated createBalloon function
         function createBalloon() {
             const balloon = document.createElement('div');
             balloon.className = 'balloon';
@@ -336,11 +451,21 @@
             setTimeout(() => balloon.remove(), 5000);
         }
 
+        // Update balloon release function
+        document.getElementById('btn3').addEventListener('click', () => {
+            // Release multiple balloons
+            for(let i = 0; i < 15; i++) {
+                setTimeout(() => createBalloon(), i * 200);
+            }
+            showNextButton('btn3', 'btn4');
+        });
+
         function createGift() {
             const gift = document.createElement('div');
             gift.className = 'gift';
-            gift.style.left = Math.random() * 80 + 10 + '%';
-            gift.style.bottom = '0';
+            gift.style.left = Math.random() * 100 + 'vw';
+            gift.style.top = Math.random() * 100 + 'vh';
+
             document.body.appendChild(gift);
             
             setTimeout(() => {
@@ -370,6 +495,7 @@
                 action: () => {
                     const lights = Array.from({ length: 30 }, createLight);
                     lights.forEach(light => light.style.opacity = '1');
+                    setInterval(createGift, 3000);
                     showNextButton('btn1', 'btn2');
                 }
             },
@@ -401,8 +527,9 @@
                 action: () => {
                     document.getElementById('wish').style.opacity = '1';
                     setInterval(createBalloon, 1000);
-                    setInterval(createGift, 3000);
                     showNextButton('btn5', null);
+                    var element = document.getElementById("button-container");
+                    element.remove();
                 }
             }
         ];
