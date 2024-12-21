@@ -11,7 +11,7 @@
 
         body {
             min-height: 100vh;
-            background: linear-gradient(45deg, #FFB6C1, #FF69B4, #DA70D6, #FF1493, #ebeb7a,#05cdff);
+            background: linear-gradient(45deg, #FFB6C1, #FF69B4,#ebeb7a,#05cdff, #DA70D6, #FF1493);
             color: white;
             font-family: 'Luckiest Guy', cursive;
             overflow: hidden;
@@ -470,7 +470,7 @@
                 id: 'btn3',
                 action: () => {
                     const balloonInterval = setInterval(createBalloon, 200);
-                    setTimeout(() => clearInterval(balloonInterval), 3000);
+                    setTimeout(() => clearInterval(balloonInterval), 5000);
                     showNextButton('btn3', 'btn4');
                 }
             },
